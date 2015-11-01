@@ -34,11 +34,11 @@ colors[0].alpha(0.5).css();
 
 ## How it Works
 
-`get-image-colors` uses [get-pixels](https://npm.im/get-pixels) to create a pixel array, then extracts a color palette with [get-rgba-palette](https://npm.im/get-rgba-palette), which uses [quantize](https://www.npmjs.com/package/quantize) under the hood.
+`get-image-colors` uses [get-pixels](http://npm.im/get-pixels) to create a pixel array, then extracts a color palette with [get-rgba-palette](http://npm.im/get-rgba-palette), which uses [quantize](http://npm.im/quantize) under the hood.
 
 Colors are converted from [get-rgba-palette's flat array format](https://github.com/mattdesl/get-rgba-palette#palettepixels-count-quality-filter) into [chroma.js color instances](http://gka.github.io/chroma.js/).
 
-To extract palettes from SVG files, a PNG copy is created on the fly using [svg2png](https://npm.im/svg2png), which depends on PhantomJS. PhantomJS can be installed as a local node module, unlike [canvas](https://npm.im/canvas) which has [external dependencies](https://github.com/Automattic/node-canvas#installation).
+To extract palettes from SVG files, a PNG copy is created on the fly using [svg2png](http://npm.im/svg2png), which depends on PhantomJS. PhantomJS can be installed as a local node module, unlike [canvas](http://npm.im/canvas) which has [external dependencies](https://github.com/Automattic/node-canvas#installation).
 
 ## Tests
 
@@ -57,7 +57,6 @@ npm test
 ## Dev Dependencies
 
 - [mocha](https://github.com/mochajs/mocha): simple, flexible, fun test framework
-
 
 ## License
 

@@ -1,5 +1,5 @@
 {
-  "name": "color-palette",
+  "name": "get-image-colors",
   "version": "1.0.0",
   "description": "Extract colors from images. Supports GIF, JPG, PNG, and even SVG!",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zeke/color-palette.git"
+    "url": "git+https://github.com/zeke/get-image-colors.git"
   },
   "keywords": [
     "color",
@@ -25,9 +25,9 @@
   "author": "zeke",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zeke/color-palette/issues"
+    "url": "https://github.com/zeke/get-image-colors/issues"
   },
-  "homepage": "https://github.com/zeke/color-palette#readme",
+  "homepage": "https://github.com/zeke/get-image-colors#readme",
   "devDependencies": {
     "mocha": "^2.3.3"
   },

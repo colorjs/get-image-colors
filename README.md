@@ -1,4 +1,4 @@
-# color-palette
+# get-image-colors
 
 Extract colors from images. Supports GIF, JPG, PNG, and even SVG!
 
@@ -7,7 +7,7 @@ Extract colors from images. Supports GIF, JPG, PNG, and even SVG!
 ## Installation
 
 ```sh
-npm install color-palette --save
+npm install get-image-colors --save
 ```
 
 This package is intended for use in node environments. It won't work in a browser because it has node-specific dependencies.
@@ -15,26 +15,26 @@ This package is intended for use in node environments. It won't work in a browse
 ## Usage
 
 ```js
-const colorPalette = require("color-palette")
+const getColors = require("get-image-colors")
 
-colorPalette(__dirname + 'double-rainbow.png', function(err, palette){
-  // palette is an array of colors
+getColors(__dirname + 'double-rainbow.png', function(err, colors){
+  // colors is an array of colors
 })
 ```
 
-The `palette` is an array of [chroma.js](http://gka.github.io/chroma.js) color objects. This is convenient because it lets you pick the color format you want (RGB hex, HSL, etc), and gives you access to powerful color manipulation features:
+`colors` is an array of [chroma.js](http://gka.github.io/chroma.js) color objects. chroma.js objects have methods that lets you pick the color format you want (RGB hex, HSL, etc), and give you access to powerful color manipulation features:
 
 ```js
-palette.map(color => color.hex())
+colors.map(color => color.hex())
 // => ['#FFFFFF', '#123123', '#F0F0F0']
 
-palette[0].alpha(0.5).css();
+colors[0].alpha(0.5).css();
 // => 'rgb(0,128,128)''
 ```
 
 ## How it Works
 
-`color-palette` uses [get-pixels](https://npm.im/get-pixels) to create a pixel array, then extracts a color palette with [get-rgba-palette](https://npm.im/get-rgba-palette), which uses [quantize](https://www.npmjs.com/package/quantize) under the hood.
+`get-image-colors` uses [get-pixels](https://npm.im/get-pixels) to create a pixel array, then extracts a color palette with [get-rgba-palette](https://npm.im/get-rgba-palette), which uses [quantize](https://www.npmjs.com/package/quantize) under the hood.
 
 Colors are converted from [get-rgba-palette's flat array format](https://github.com/mattdesl/get-rgba-palette#palettepixels-count-quality-filter) into [chroma.js color instances](http://gka.github.io/chroma.js/).
 

@@ -7,7 +7,7 @@ const svg2png = require('svg2png')
 
 const patterns = {
   image: /\.(gif|jpg|png|svg)$/i,
-  bitmap: /\.(gif|jpg|png)$/i,
+  raster: /\.(gif|jpg|png)$/i,
   svg: /svg$/i
 }
 

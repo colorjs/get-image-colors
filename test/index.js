@@ -1,12 +1,12 @@
 /* globals describe, it */
 
-const colorPalette = require('..')
+const getColors = require('..')
 const assert = require('assert')
 
-describe('color-palette', function(){
+describe('get-image-colors', function(){
 
   it('works on JPG images', function(done){
-    colorPalette(__dirname + '/fixtures/thumb.jpg', function(err, palette){
+    getColors(__dirname + '/fixtures/thumb.jpg', function(err, palette){
       if (err) throw err
       assert(Array.isArray(palette))
       assert(palette.length)
@@ -16,7 +16,7 @@ describe('color-palette', function(){
   })
 
   it('works on GIF images', function(done){
-    colorPalette(__dirname + '/fixtures/thumb.gif', function(err, palette){
+    getColors(__dirname + '/fixtures/thumb.gif', function(err, palette){
       if (err) throw err
       assert(Array.isArray(palette))
       assert(palette.length)
@@ -26,7 +26,7 @@ describe('color-palette', function(){
   })
 
   it('works on PNG images', function(done){
-    colorPalette(__dirname + '/fixtures/thumb.png', function(err, palette){
+    getColors(__dirname + '/fixtures/thumb.png', function(err, palette){
       if (err) throw err
       assert(Array.isArray(palette))
       assert(palette.length)
@@ -36,7 +36,7 @@ describe('color-palette', function(){
   })
 
   it('works on SVG images', function(done){
-    colorPalette(__dirname + '/fixtures/thumb.svg', function(err, palette){
+    getColors(__dirname + '/fixtures/thumb.svg', function(err, palette){
       if (err) throw err
       assert(Array.isArray(palette))
       assert(palette.length)

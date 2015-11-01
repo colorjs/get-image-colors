@@ -1,7 +1,7 @@
 {
   "name": "color-palette",
   "version": "1.0.0",
-  "description": "Extract colors from GIF, PNG, JPG, and SVG images",
+  "description": "Extract colors from images. Supports GIF, JPG, PNG, and even SVG!",
   "main": "index.js",
   "scripts": {
     "test": "mocha"

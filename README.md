@@ -2,6 +2,8 @@
 
 Extract colors from images. Supports GIF, JPG, PNG, and even SVG!
 
+![example](https://cldup.com/VQ81Y7tn_X.png)
+
 ## Installation
 
 ```sh

@@ -1,0 +1,40 @@
+{
+  "name": "color-palette",
+  "version": "1.0.0",
+  "description": "Extract colors from GIF, PNG, JPG, and SVG images",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeke/color-palette.git"
+  },
+  "keywords": [
+    "color",
+    "palette",
+    "svg",
+    "gif",
+    "png",
+    "jpg",
+    "canvas",
+    "pixels",
+    "rgb",
+    "rgba"
+  ],
+  "author": "zeke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zeke/color-palette/issues"
+  },
+  "homepage": "https://github.com/zeke/color-palette#readme",
+  "devDependencies": {
+    "mocha": "^2.3.3"
+  },
+  "dependencies": {
+    "chroma-js": "^1.1.1",
+    "get-pixels": "^3.2.3",
+    "get-rgba-palette": "^2.0.0",
+    "svg2png": "^1.1.1"
+  }
+}

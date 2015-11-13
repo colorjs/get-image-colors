@@ -35,6 +35,6 @@
     "chroma-js": "^1.1.1",
     "get-pixels": "^3.2.3",
     "get-rgba-palette": "^2.0.0",
-    "svg2png": "^1.1.1"
+    "svg2png": "^2.0.0"
   }
 }

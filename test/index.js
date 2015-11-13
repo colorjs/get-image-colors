@@ -36,6 +36,7 @@ describe('get-image-colors', function(){
   })
 
   it('works on SVG images', function(done){
+    this.timeout(5000)
     getColors(__dirname + '/fixtures/thumb.svg', function(err, palette){
       if (err) throw err
       assert(Array.isArray(palette))

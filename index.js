@@ -4,7 +4,7 @@ const tmp = require('tmp')
 const getPixels = require('get-pixels')
 const getRgbaPalette = require('get-rgba-palette')
 const chroma = require('chroma-js')
-const svg2png = require('svg2png')
+const getSvgColors = require('get-svg-colors')
 
 const patterns = {
   image: /\.(gif|jpg|png|svg)$/i,
@@ -15,11 +15,7 @@ const patterns = {
 module.exports = function colorPalette (filename, callback) {
   // SVG
   if (filename.match(patterns.svg)) {
-    var newFilename = tmp.fileSync({postfix: '.png'}).name
-    return svg2png(filename, newFilename, function (err) {
-      if (err) return callback(err)
-      return paletteFromBitmap(newFilename, callback)
-    })
+    return callback(null, getSvgColors(filename, {flat: true}))
   }
 
   // PNG, GIF, JPG

@@ -38,8 +38,6 @@ colors[0].alpha(0.5).css();
 
 Colors are converted from [get-rgba-palette's flat array format](https://github.com/mattdesl/get-rgba-palette#palettepixels-count-quality-filter) into [chroma.js color instances](http://gka.github.io/chroma.js/).
 
-To extract palettes from SVG files, a PNG copy is created on the fly using [svg2png](http://npm.im/svg2png), which depends on PhantomJS. PhantomJS can be installed as a local node module, unlike [canvas](http://npm.im/canvas) which has [external dependencies](https://github.com/Automattic/node-canvas#installation).
-
 ## Tests
 
 ```sh
@@ -52,7 +50,7 @@ npm test
 - [chroma-js](https://github.com/gka/chroma.js): JavaScript library for color conversions
 - [get-pixels](https://github.com/scijs/get-pixels): Reads the pixels of an image as an ndarray
 - [get-rgba-palette](https://github.com/mattdesl/get-rgba-palette): gets a palette of prominent colors from an array of pixels
-- [svg2png](https://github.com/domenic/svg2png): A SVG to PNG converter, using PhantomJS
+- [get-svg-colors](https://github.com/zeke/get-svg-colors): Extract stroke and fill colors from SVG files
 
 ## Dev Dependencies
 

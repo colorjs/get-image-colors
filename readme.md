@@ -22,6 +22,17 @@ getColors(__dirname + 'double-rainbow.png').then(colors => {
 })
 ```
 
+You can also use a buffer as an input source.
+```js
+const fs = require("fs");
+const buffer = fs.readFileSync(path.join(__dirname, 'double-rainbow.gif'))
+const getColors = require("get-image-colors")
+
+getColors(buffer, function(err, colors){
+  // colors is an array of colors
+})
+```
+
 `colors` is an array of [chroma.js](http://gka.github.io/chroma.js) color objects. chroma.js objects have methods that lets you pick the color format you want (RGB hex, HSL, etc), and give you access to powerful color manipulation features:
 
 ```js

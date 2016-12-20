@@ -5,6 +5,7 @@ const getPixels = require('get-pixels')
 const getRgbaPalette = require('get-rgba-palette')
 const chroma = require('chroma-js')
 const getSvgColors = require('get-svg-colors')
+const pify = require('pify')
 
 const patterns = {
   image: /\.(gif|jpg|png|svg)$/i,
@@ -12,7 +13,7 @@ const patterns = {
   svg: /svg$/i
 }
 
-module.exports = function colorPalette (filename, callback) {
+function colorPalette (filename, callback) {
   // SVG
   if (filename.match(patterns.svg)) {
     return callback(null, getSvgColors(filename, {flat: true}))
@@ -31,3 +32,5 @@ function paletteFromBitmap (filename, callback) {
     return callback(null, palette)
   })
 }
+
+module.exports = pify(colorPalette)

@@ -47,4 +47,11 @@ describe('get-image-colors', function(){
     })
   })
 
+  it('supports promises', function(done){
+    getColors(__dirname + '/fixtures/thumb.jpg')
+      .then(function(palette){
+        assert(Array.isArray(palette))
+        done()
+      })
+  })
 })

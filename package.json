@@ -29,7 +29,8 @@
   },
   "homepage": "https://github.com/zeke/get-image-colors#readme",
   "devDependencies": {
-    "mocha": "^2.3.3"
+    "mocha": "^2.3.3",
+    "pify": "^2.3.0"
   },
   "dependencies": {
     "chroma-js": "^1.1.1",

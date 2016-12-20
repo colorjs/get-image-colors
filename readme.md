@@ -17,8 +17,8 @@ This package is intended for use in node environments. It won't work in a browse
 ```js
 const getColors = require("get-image-colors")
 
-getColors(__dirname + 'double-rainbow.png', function(err, colors){
-  // colors is an array of colors
+getColors(__dirname + 'double-rainbow.png').then(colors => {
+  // `colors` is an array of color objects
 })
 ```
 
@@ -30,6 +30,15 @@ colors.map(color => color.hex())
 
 colors[0].alpha(0.5).css();
 // => 'rgb(0,128,128)''
+```
+
+If you don't like promises, you can use node-style callbacks too:
+
+```js
+getColors(filename, function (err, colors) {
+  if (err) throw err
+  // ...
+})
 ```
 
 ## How it Works

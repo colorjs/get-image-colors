@@ -1,6 +1,3 @@
-const fs = require('fs')
-const path = require('path')
-const tmp = require('tmp')
 const getPixels = require('get-pixels')
 const getRgbaPalette = require('get-rgba-palette')
 const chroma = require('chroma-js')

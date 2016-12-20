@@ -15,21 +15,22 @@ This package is intended for use in node environments. It won't work in a browse
 ## Usage
 
 ```js
-const getColors = require("get-image-colors")
+const path = require('path')
+const getColors = require('get-image-colors')
 
-getColors(__dirname + 'double-rainbow.png').then(colors => {
+getColors(path.join(__dirname, 'double-rainbow.png')).then(colors => {
   // `colors` is an array of color objects
 })
 ```
 
 You can also use a buffer as an input source.
 ```js
-const fs = require("fs");
+const fs = require('fs')
 const buffer = fs.readFileSync(path.join(__dirname, 'double-rainbow.gif'))
-const getColors = require("get-image-colors")
+const getColors = require('get-image-colors')
 
-getColors(buffer, function(err, colors){
-  // colors is an array of colors
+getColors(buffer).then(colors => {
+  // `colors` is an array of color objects
 })
 ```
 
@@ -39,7 +40,7 @@ getColors(buffer, function(err, colors){
 colors.map(color => color.hex())
 // => ['#FFFFFF', '#123123', '#F0F0F0']
 
-colors[0].alpha(0.5).css();
+colors[0].alpha(0.5).css()
 // => 'rgb(0,128,128)''
 ```
 

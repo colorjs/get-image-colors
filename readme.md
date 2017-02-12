@@ -29,7 +29,7 @@ const fs = require('fs')
 const buffer = fs.readFileSync(path.join(__dirname, 'double-rainbow.gif'))
 const getColors = require('get-image-colors')
 
-getColors(buffer).then(colors => {
+getColors(buffer, 'image/gif').then(colors => {
   // `colors` is an array of color objects
 })
 ```

@@ -25,7 +25,6 @@ function colorPalette (input, options, callback) {
   }
 
   const config = Object.assign(defaultOptions, options)
-  console.log(config)
 
   // SVG
   if (!Buffer.isBuffer(input)) {
@@ -48,7 +47,6 @@ function paletteFromBitmap (filename, config, callback) {
 
   getPixels(filename, config.type, function (err, pixels) {
     if (err) return callback(err)
-    console.log(`About to make ${config.paletteSize} swatches`)
     const palette = getRgbaPalette(pixels.data, config.paletteSize).map(function (rgba) {
       return chroma(rgba)
     })

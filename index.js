@@ -10,34 +10,46 @@ const patterns = {
   svg: /svg$/i
 }
 
-function colorPalette (input, type, callback) {
-  if (typeof type === 'function') {
-    callback = type
-    type = null
+const defaultOptions = {
+  type: undefined,
+  paletteSize: 5
+}
+
+function colorPalette (input, options, callback) {
+  if (typeof options === 'string') {
+    options = { type: options }
   }
+
+  if (typeof options === 'function') {
+    callback = options
+  }
+
+  const config = Object.assign(defaultOptions, options)
+  console.log(config)
 
   // SVG
   if (!Buffer.isBuffer(input)) {
     if (input.match(patterns.svg)) {
       return callback(null, getSvgColors(input, { flat: true }))
     }
-  } else if (type === 'image/svg+xml') {
+  } else if (config.type === 'image/svg+xml') {
     return callback(null, getSvgColors(input, { flat: true }))
   }
 
   // PNG, GIF, JPG
-  return paletteFromBitmap(input, type, callback)
+  return paletteFromBitmap(input, config, callback)
 }
 
-function paletteFromBitmap (filename, type, callback) {
+function paletteFromBitmap (filename, config, callback) {
   if (!callback) {
-    callback = type
-    type = null
+    callback = config.type
+    config.type = null
   }
 
-  getPixels(filename, type, function (err, pixels) {
+  getPixels(filename, config.type, function (err, pixels) {
     if (err) return callback(err)
-    const palette = getRgbaPalette(pixels.data, 5).map(function (rgba) {
+    console.log(`About to make ${config.paletteSize} swatches`)
+    const palette = getRgbaPalette(pixels.data, config.paletteSize).map(function (rgba) {
       return chroma(rgba)
     })
 

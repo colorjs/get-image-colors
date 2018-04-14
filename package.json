@@ -7,7 +7,7 @@
     "test": "mocha && standard && standard-markdown",
     "lint": "standard"
   },
-  "repository": "https://github.com/zeke/get-image-colors",
+  "repository": "https://github.com/colorjs/get-image-colors",
   "keywords": [
     "color",
     "palette",

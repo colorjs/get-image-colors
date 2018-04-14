@@ -71,7 +71,7 @@ npm test
 - [chroma-js](https://github.com/gka/chroma.js): JavaScript library for color conversions
 - [get-pixels](https://github.com/scijs/get-pixels): Reads the pixels of an image as an ndarray
 - [get-rgba-palette](https://github.com/mattdesl/get-rgba-palette): gets a palette of prominent colors from an array of pixels
-- [get-svg-colors](https://github.com/zeke/get-svg-colors): Extract stroke and fill colors from SVG files
+- [get-svg-colors](https://github.com/colorjs/get-svg-colors): Extract stroke and fill colors from SVG files
 
 ## Dev Dependencies
 

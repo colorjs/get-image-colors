@@ -23,9 +23,9 @@
   "author": "zeke",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "^2.3.3",
+    "mocha": "^5.2.0",
     "standard": "^8.6.0",
-    "standard-markdown": "^2.3.0"
+    "standard-markdown": "^4.0.2"
   },
   "dependencies": {
     "pify": "^2.3.0",

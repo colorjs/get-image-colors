@@ -20,6 +20,7 @@ const getColors = require('get-image-colors')
 
 getColors(path.join(__dirname, 'double-rainbow.png')).then(colors => {
   // `colors` is an array of color objects
+  // returns 20 of the most prominent colors
 })
 ```
 

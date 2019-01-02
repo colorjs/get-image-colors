@@ -4,7 +4,7 @@
   "description": "Extract colors from images. Supports GIF, JPG, PNG, and even SVG!",
   "main": "index.js",
   "scripts": {
-    "test": "mocha && standard && standard-markdown",
+    "test": "mocha && standard && standard-markdown *.md",
     "lint": "standard"
   },
   "repository": "https://github.com/colorjs/get-image-colors",

@@ -14,16 +14,29 @@ This package is intended for use in node environments. It won't work in a browse
 
 ## Usage
 
+
+### Syntax
+
+```
+getColors(input [, options [, callback]])
+```
+
+#### `input`
+
+`getColors` can take the path to an image, and will return a promise that, when resolved, can give you the colors of an image. Alternatively, you can use callbacks (see below).
+
 ```js
 const path = require('path')
 const getColors = require('get-image-colors')
+const imgPath = path.join(__dirname, 'double-rainbow.png')
 
-getColors(path.join(__dirname, 'double-rainbow.png')).then(colors => {
+getColors(imgPath).then(colors => {
   // `colors` is an array of color objects
 })
 ```
 
 You can also use a buffer as an input source.
+
 ```js
 const fs = require('fs')
 const buffer = fs.readFileSync(path.join(__dirname, 'double-rainbow.gif'))
@@ -33,6 +46,28 @@ getColors(buffer, 'image/gif').then(colors => {
   // `colors` is an array of color objects
 })
 ```
+
+#### options
+
+You may pass an object of options as the second parameter. The options are:
+
+|Name|Type|Default|Description|
+|-|-|-|-|
+|type|`string`|`undefined`|The MIME type of the image.|
+|paletteSize|`number`|`5`|The number of colors to return|
+
+```js
+const path = require('path')
+const getColors = require('get-image-colors')
+const imgPath = path.join(__dirname, 'double-rainbow.png')
+const opts = { paletteSize: 10 }
+
+getColors(imgPath, opts).then(colors => {
+  // `colors` will have 10 color objects in it
+})
+```
+
+### Return values
 
 `colors` is an array of [chroma.js](http://gka.github.io/chroma.js) color objects. chroma.js objects have methods that lets you pick the color format you want (RGB hex, HSL, etc), and give you access to powerful color manipulation features:
 

@@ -15,7 +15,7 @@ const defaultOptions = {
   paletteSize: 5
 }
 
-function colorPalette(input, options, callback) {
+function colorPalette (input, options, callback) {
   if (typeof options === 'string') {
     options = { type: options }
   }
@@ -27,8 +27,8 @@ function colorPalette(input, options, callback) {
   const config = Object.assign(defaultOptions, options)
 
   // SVG
-  if ((!Buffer.isBuffer(input) && input.match(patterns.svg))
-    || config.type === 'image/svg+xml') {
+  if ((!Buffer.isBuffer(input) && input.match(patterns.svg)) ||
+    config.type === 'image/svg+xml') {
     return callback(null, getSvgColors(input, { flat: true }))
   }
 
@@ -36,7 +36,7 @@ function colorPalette(input, options, callback) {
   return paletteFromBitmap(input, config, callback)
 }
 
-function paletteFromBitmap(filename, config, callback) {
+function paletteFromBitmap (filename, config, callback) {
   if (!callback) {
     callback = config.type
     config.type = null

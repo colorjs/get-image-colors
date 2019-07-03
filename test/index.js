@@ -101,4 +101,34 @@ describe('get-image-colors', function () {
       done()
     })
   })
+
+  // TODO: Should improve the testing for the `options` object
+
+  it('accepts an options object', function (done) {
+    const imgPath = path.join(__dirname, '/fixtures/thumb.jpg')
+    const options = {}
+
+    getColors(imgPath, options, function (err, palette) {
+      if (err) throw err
+
+      assert(Array.isArray(palette))
+      assert(palette.length)
+      assert(palette[0].hex().match(/^#[0-9a-f]{3,6}$/i))
+      done()
+    })
+  })
+
+  it('can return various palette sizes', function (done) {
+    const imgPath = path.join(__dirname, '/fixtures/thumb.jpg')
+    const options = { paletteSize: 10 }
+
+    getColors(imgPath, options, function (err, palette) {
+      if (err) throw err
+
+      assert(Array.isArray(palette))
+      assert(palette.length === options.paletteSize)
+      assert(palette[0].hex().match(/^#[0-9a-f]{3,6}$/i))
+      done()
+    })
+  })
 })

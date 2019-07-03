@@ -16,12 +16,18 @@ const defaultOptions = {
 }
 
 function colorPalette (input, options, callback) {
-  if (typeof options === 'string') {
-    options = { type: options }
-  }
+  switch (typeof options) {
+    case 'string':
+      options = { type: options }
+      break
 
-  if (typeof options === 'function') {
-    callback = options
+    case 'number':
+      options = { paletteSize: options }
+      break
+
+    case 'function':
+      callback = options
+      break
   }
 
   const config = Object.assign(defaultOptions, options)

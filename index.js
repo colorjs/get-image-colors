@@ -10,17 +10,19 @@ const patterns = {
   svg: /svg$/i
 }
 
+let paletteSize = 5;
+
 function colorPalette (input, options, callback) {
   if (typeof options === 'function') {
     callback = options
     options = {
       type: undefined,
-      count: 5
+      count: paletteSize
     }
   } else if (typeof options === 'string') {
     options = {
       type: options,
-      count: 5
+      count: paletteSize
     }
   }
 
@@ -42,7 +44,7 @@ function paletteFromBitmap (filename, options, callback) {
     callback = options
     options = {
       type: undefined,
-      count: 5
+      count: paletteSize
     }
   }
 
@@ -57,3 +59,8 @@ function paletteFromBitmap (filename, options, callback) {
 }
 
 module.exports = pify(colorPalette)
+
+module.exports.setPaletteSize = function(size) { 
+  if (typeof size === 'number')
+    paletteSize = size 
+}

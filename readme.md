@@ -53,15 +53,18 @@ getColors(filename, function (err, colors) {
 })
 ```
 
-The default number of colors returned is 5.  You can specify a different number of colors by setting the pallet size before the call to getColors:
+The default number of colors returned is 5.  You can specify a different number of colors by passing an options object into the call to getColors:
 
 ```js
 const path = require('path')
 const getColors = require('get-image-colors')
 
-getColors.setPaletteSize(10)
-getColors(path.join(__dirname, 'double-rainbow.png')).then(colors => {
-  // `colors` is an array of color objects
+const options = {
+  count: 10,
+  type: 'image/png'
+}
+getColors(path.join(__dirname, 'double-rainbow.png'), options).then(colors => {
+  // `colors` is an array of 10 color objects
 })
 ```
 

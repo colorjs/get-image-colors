@@ -12,6 +12,18 @@ npm install get-image-colors --save
 
 This package is intended for use in node environments. It won't work in a browser because it has node-specific dependencies.
 
+**Note:** when installing with webpack, if you get the error 
+```
+Can't resolve 'fs' in '/node_modules/get-svg-colors' 
+```
+as per an [open issue in webpack-contrib](https://github.com/webpack-contrib/css-loader/issues/447), you will need to add `node: { fs: 'empty' }` to your `webpack.base.config`:
+```
+module.exports = {
+    ... ,
+    node: { fs: 'empty' }
+}
+```
+
 ## Usage
 
 ```js

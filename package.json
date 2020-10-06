@@ -1,6 +1,6 @@
 {
   "name": "get-image-colors",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Extract colors from images. Supports GIF, JPG, PNG, and even SVG!",
   "main": "index.js",
   "scripts": {

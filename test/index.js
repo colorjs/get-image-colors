@@ -101,4 +101,51 @@ describe('get-image-colors', function () {
       done()
     })
   })
+
+  it('returns 5 colors by default', function (done) {
+    const expectedCount = 5
+    getColors(path.join(__dirname, '/fixtures/thumb.png'), function (err, palette) {
+      if (err) throw err
+      assert(Array.isArray(palette))
+      assert.equal(palette.length, expectedCount)
+      palette.forEach(color => {
+        assert(color.hex().match(/^#[0-9a-f]{3,6}$/i))
+      })
+      done()
+    })
+  })
+
+  it('returns 7 colors when options with count:7 specified', function (done) {
+    const expectedCount = 7
+    const options = {
+      count: expectedCount,
+      type: 'image/png'
+    }
+    getColors(path.join(__dirname, '/fixtures/thumb.png'), options, function (err, palette) {
+      if (err) throw err
+      assert(Array.isArray(palette))
+      assert.equal(palette.length, expectedCount)
+      palette.forEach(color => {
+        assert(color.hex().match(/^#[0-9a-f]{3,6}$/i))
+      })
+      done()
+    })
+  })
+
+  it('returns 10 colors when options with count:10 specified', function (done) {
+    const expectedCount = 10
+    const options = {
+      count: expectedCount,
+      type: 'image/png'
+    }
+    getColors(path.join(__dirname, '/fixtures/thumb.png'), options, function (err, palette) {
+      if (err) throw err
+      assert(Array.isArray(palette))
+      assert.equal(palette.length, expectedCount)
+      palette.forEach(color => {
+        assert(color.hex().match(/^#[0-9a-f]{3,6}$/i))
+      })
+      done()
+    })
+  })
 })

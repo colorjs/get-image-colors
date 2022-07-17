@@ -1,59 +1,61 @@
-const getPixels = require('get-pixels')
-const getRgbaPalette = require('get-rgba-palette')
-const chroma = require('chroma-js')
-const getSvgColors = require('get-svg-colors')
-const pify = require('pify')
+import getPixels from 'get-pixels';
+import getRgbaPalette from 'get-rgba-palette';
+import chroma from 'chroma-js';
+import getSvgColors from 'get-svg-colors';
+import pify from 'pify';
 
 const patterns = {
-  image: /\.(gif|jpg|png|svg)$/i,
-  raster: /\.(gif|jpg|png)$/i,
-  svg: /svg$/i
-}
+  image: /\.(?:gif|jpg|png|svg)$/i,
+  raster: /\.(?:gif|jpg|png)$/i,
+  svg: /\.svg$/i
+};
 
-function colorPalette (input, options, callback) {
+function colorPalette(input, options, callback) {
   if (typeof options === 'function') {
-    callback = options
+    callback = options;
     options = {
       type: undefined,
       count: 5
-    }
-  } else if (typeof options === 'string') {
+    };
+  } else if (typeof options === 'string')
     options = {
       type: options,
       count: 5
-    }
-  }
+    };
 
   // SVG
-  if (!Buffer.isBuffer(input)) {
-    if (input.match(patterns.svg)) {
-      return callback(null, getSvgColors(input, { flat: true }))
-    }
-  } else if (options.type === 'image/svg+xml') {
-    return callback(null, getSvgColors(input, { flat: true }))
-  }
+  if (
+    (!Buffer.isBuffer(input) && patterns.svg.test(input)) ||
+    options.type === 'image/svg+xml'
+  )
+    return callback(null, getSvgColors(input, { flat: true }));
 
   // PNG, GIF, JPG
-  return paletteFromBitmap(input, options, callback)
+  return paletteFromBitmap(input, options, callback);
 }
 
-function paletteFromBitmap (filename, options, callback) {
-  if (!callback) {
-    callback = options
+function paletteFromBitmap(filename, options, callback) {
+  if (callback == undefined) {
+    callback = options;
     options = {
       type: undefined,
       count: 5
-    }
+    };
   }
 
-  getPixels(filename, options.type, function (err, pixels) {
-    if (err) return callback(err)
-    const palette = getRgbaPalette(pixels.data, options.count).map(function (rgba) {
-      return chroma(rgba)
-    })
+  getPixels(filename, options.type, (err, pixels) => {
+    if (err != undefined) {
+      callback(err);
 
-    return callback(null, palette)
-  })
+      return;
+    }
+
+    const palette = getRgbaPalette(pixels.data, options.count).map((rgba) =>
+      chroma(rgba)
+    );
+
+    callback(null, palette);
+  });
 }
 
-module.exports = pify(colorPalette)
+export default pify(colorPalette);

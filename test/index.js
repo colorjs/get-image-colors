@@ -1,104 +1,123 @@
-const getColors = require('..')
-const fs = require('fs')
-const path = require('path')
-const assert = require('assert')
+import getColors from '../index.js';
+import { readFileSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import assert from 'node:assert';
 
-describe('get-image-colors', function () {
-  it('works on JPG images', function (done) {
-    getColors(path.join(__dirname, '/fixtures/thumb.jpg'), function (err, palette) {
-      if (err) throw err
-      assert(Array.isArray(palette))
-      assert(palette.length)
-      assert(palette[0].hex().match(/^#[0-9a-f]{3,6}$/i))
-      done()
-    })
-  })
+const hexReg = /^#[0-9a-f]{3,6}$/i;
+const _dirname = dirname(fileURLToPath(import.meta.url));
 
-  it('works on GIF images', function (done) {
-    getColors(path.join(__dirname, '/fixtures/thumb.gif'), function (err, palette) {
-      if (err) throw err
-      assert(Array.isArray(palette))
-      assert(palette.length)
-      assert(palette[0].hex().match(/^#[0-9a-f]{3,6}$/i))
-      done()
-    })
-  })
+// eslint-disable-next-line no-undef
+describe('get-image-colors', () => {
+  // eslint-disable-next-line no-undef
+  it('works on JPG images', (done) => {
+    getColors(join(_dirname, '/fixtures/thumb.jpg'), (err, palette) => {
+      if (err != undefined) throw err;
 
-  it('works on PNG images', function (done) {
-    getColors(path.join(__dirname, '/fixtures/thumb.png'), function (err, palette) {
-      if (err) throw err
-      assert(Array.isArray(palette))
-      assert(palette.length)
-      assert(palette[0].hex().match(/^#[0-9a-f]{3,6}$/i))
-      done()
-    })
-  })
+      assert(Array.isArray(palette));
+      assert(palette.length !== 0);
+      assert(hexReg.test(palette[0].hex()));
+      done();
+    });
+  });
 
-  it('works on SVG images', function (done) {
-    this.timeout(5000)
-    getColors(path.join(__dirname, '/fixtures/thumb.svg'), function (err, palette) {
-      if (err) throw err
-      assert(Array.isArray(palette))
-      assert(palette.length)
-      palette = palette.map(color => color.hex())
-      assert(palette[0].match(/^#[0-9a-f]{3,6}$/i))
-      done()
-    })
-  })
+  // eslint-disable-next-line no-undef
+  it('works on GIF images', (done) => {
+    getColors(join(_dirname, '/fixtures/thumb.gif'), (err, palette) => {
+      if (err != undefined) throw err;
 
-  it('supports promises', function (done) {
-    getColors(path.join(__dirname, '/fixtures/thumb.jpg'))
-      .then(function (palette) {
-        assert(Array.isArray(palette))
-        done()
-      })
-  })
+      assert(Array.isArray(palette));
+      assert(palette.length !== 0);
+      assert(hexReg.test(palette[0].hex()));
+      done();
+    });
+  });
 
-  it('works on Buffered JPEG images', function (done) {
-    const buffer = fs.readFileSync(path.join(__dirname, '/fixtures/thumb.jpg'))
+  // eslint-disable-next-line no-undef
+  it('works on PNG images', (done) => {
+    getColors(join(_dirname, '/fixtures/thumb.png'), (err, palette) => {
+      if (err != undefined) throw err;
 
-    getColors(buffer, 'image/jpeg', function (err, palette) {
-      if (err) throw err
-      assert(Array.isArray(palette))
-      assert(palette.length)
-      assert(palette[0].hex().match(/^#[0-9a-f]{3,6}$/i))
-      done()
-    })
-  })
+      assert(Array.isArray(palette));
+      assert(palette.length !== 0);
+      assert(hexReg.test(palette[0].hex()));
+      done();
+    });
+  });
 
-  it('works on Buffered GIF images', function (done) {
-    const buffer = fs.readFileSync(path.join(__dirname, '/fixtures/thumb.gif'))
+  // eslint-disable-next-line no-undef
+  it('works on SVG images', (done) => {
+    getColors(join(_dirname, '/fixtures/thumb.svg'), (err, palette) => {
+      if (err != undefined) throw err;
 
-    getColors(buffer, 'image/gif', function (err, palette) {
-      if (err) throw err
-      assert(Array.isArray(palette))
-      assert(palette.length)
-      assert(palette[0].hex().match(/^#[0-9a-f]{3,6}$/i))
-      done()
-    })
-  })
+      assert(Array.isArray(palette));
+      assert(palette.length !== 0);
+      assert(hexReg.test(palette[0].hex()));
+      done();
+    });
+  });
 
-  it('works on Buffered PNG images', function (done) {
-    const buffer = fs.readFileSync(path.join(__dirname, '/fixtures/thumb.png'))
+  // eslint-disable-next-line no-undef
+  it('supports promises', (done) => {
+    getColors(join(_dirname, '/fixtures/thumb.jpg')).then((palette) => {
+      assert(Array.isArray(palette));
+      done();
+    });
+  });
 
-    getColors(buffer, 'image/png', function (err, palette) {
-      if (err) throw err
-      assert(Array.isArray(palette))
-      assert(palette.length)
-      assert(palette[0].hex().match(/^#[0-9a-f]{3,6}$/i))
-      done()
-    })
-  })
+  // eslint-disable-next-line no-undef
+  it('works on Buffered JPEG images', (done) => {
+    const buffer = readFileSync(join(_dirname, '/fixtures/thumb.jpg'));
 
-  it('works on Buffered SVG images', function (done) {
-    const buffer = fs.readFileSync(path.join(__dirname, '/fixtures/thumb.svg'))
+    getColors(buffer, 'image/jpeg', (err, palette) => {
+      if (err != undefined) throw err;
 
-    getColors(buffer, 'image/svg+xml', function (err, palette) {
-      if (err) throw err
-      assert(Array.isArray(palette))
-      assert(palette.length)
-      assert(palette[0].hex().match(/^#[0-9a-f]{3,6}$/i))
-      done()
-    })
-  })
-})
+      assert(Array.isArray(palette));
+      assert(palette.length !== 0);
+      assert(hexReg.test(palette[0].hex()));
+      done();
+    });
+  });
+
+  // eslint-disable-next-line no-undef
+  it('works on Buffered GIF images', (done) => {
+    const buffer = readFileSync(join(_dirname, '/fixtures/thumb.gif'));
+
+    getColors(buffer, 'image/gif', (err, palette) => {
+      if (err != undefined) throw err;
+
+      assert(Array.isArray(palette));
+      assert(palette.length !== 0);
+      assert(hexReg.test(palette[0].hex()));
+      done();
+    });
+  });
+
+  // eslint-disable-next-line no-undef
+  it('works on Buffered PNG images', (done) => {
+    const buffer = readFileSync(join(_dirname, '/fixtures/thumb.png'));
+
+    getColors(buffer, 'image/png', (err, palette) => {
+      if (err != undefined) throw err;
+
+      assert(Array.isArray(palette));
+      assert(palette.length !== 0);
+      assert(hexReg.test(palette[0].hex()));
+      done();
+    });
+  });
+
+  // eslint-disable-next-line no-undef
+  it('works on Buffered SVG images', (done) => {
+    const buffer = readFileSync(join(_dirname, '/fixtures/thumb.svg'));
+
+    getColors(buffer, 'image/svg+xml', (err, palette) => {
+      if (err != undefined) throw err;
+
+      assert(Array.isArray(palette));
+      assert(palette.length !== 0);
+      assert(hexReg.test(palette[0].hex()));
+      done();
+    });
+  });
+});
